@@ -1,110 +1,96 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int currentStation;
+    private int currentStationNumber;
     private int currentVolume;
-    private int minStation = 0;
-    private int maxStation = 9;
-    private int minVolume = 0;
+    private int numberOfStations = 9;
     private int maxVolume = 10;
 
-    public Radio(int currentStation, int currentVolume, int minStation, int maxStation, int minVolume, int maxVolume) {
-        this.currentStation = currentStation;
-        this.currentVolume = currentVolume;
-        this.minStation = minStation;
-        this.maxStation = maxStation;
-        this.minVolume = minVolume;
-        this.maxVolume = maxVolume;
+    public Radio() {
     }
 
-    public Radio(int currentStation, int currentVolume) {
-        this.currentStation = currentStation;
-        this.currentVolume = currentVolume;
+    public Radio(int numberOfStations) {
+        this.numberOfStations = numberOfStations;
     }
 
-    public void setCurrentStation(int currentStation) {
-        if (currentStation > maxStation) {
+    public void setCurrentStationNumber(int newCurrentStationNumber) {
+
+        if (newCurrentStationNumber < 0) {
             return;
         }
-        if (currentStation < minStation) {
+        if (newCurrentStationNumber >= numberOfStations) {
             return;
         }
-        this.currentStation = currentStation;
+        this.currentStationNumber = newCurrentStationNumber;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > maxVolume) {
-            return;
-        }
-        if (currentVolume < minVolume) {
-            return;
-        }
-        this.currentVolume = currentVolume;
+
+    public int getNumberOfStations() {
+        return numberOfStations;
     }
 
-    public void increaseCurrentVolume() {
-        if (currentVolume < maxVolume) currentVolume++;
+
+    public int getCurrentStationNumber() {
+        return currentStationNumber;
     }
 
-    public void decreaseCurrentVolume() {
-        if (currentVolume > minVolume) currentVolume--;
+    public void setVolumeToMaximum() {
+        this.currentVolume = maxVolume;
     }
 
-    public void nextStation() {
-        if (currentStation == maxStation) {
-            currentStation = minStation;
-            return;
-        }
-        currentStation++;
+    public void setStationNumberToMaximum() {
+        this.currentStationNumber = numberOfStations;
     }
 
-    public void prevStation() {
-        if (currentStation == minStation) {
-            currentStation = maxStation;
-            return;
-        }
-        currentStation--;
-    }
-
-    public int getMinStation() {
-        return minStation;
-    }
-
-    public void setMinStation(int minStation) {
-        this.minStation = minStation;
-    }
-
-    public int getMaxStation() {
-        return maxStation;
-    }
-
-    public void setMaxStation(int maxStation) {
-        this.maxStation = maxStation;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public void setMinVolume(int minVolume) {
-        this.minVolume = minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public void setMaxVolume(int maxVolume) {
-        this.maxVolume = maxVolume;
-    }
-
-    public int getCurrentStation() {
-        return currentStation;
-    }
 
     public int getCurrentVolume() {
         return currentVolume;
     }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 10) {
+            return;
+        }
+        this.currentVolume = newCurrentVolume;
+    }
+
+    public void increaseVolume() {
+        if (currentVolume < maxVolume) {
+            this.currentVolume = currentVolume + 1;
+        } else {
+            currentVolume = maxVolume;
+        }
+    }
+
+
+    public void decreaseVolume() {
+        if (currentVolume > 0) {
+            this.currentVolume = currentVolume - 1;
+        } else {
+            currentVolume = 0;
+        }
+
+    }
+
+    public void increaseStationNumber() {
+        if (currentStationNumber < numberOfStations) {
+            this.currentStationNumber++;
+        } else {
+            this.currentStationNumber = 0;
+        }
+    }
+
+
+    public void decreaseStationNumber() {
+        if (currentStationNumber > 0) {
+            this.currentStationNumber--;
+        } else {
+            this.currentStationNumber = numberOfStations;
+        }
+
+    }
+
 }
-
-
